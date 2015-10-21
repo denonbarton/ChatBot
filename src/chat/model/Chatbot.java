@@ -22,6 +22,7 @@ public class Chatbot
 	public Chatbot(String userName)
 	{
 		
+		
 	}
 	
 	private void buildMemesList()
