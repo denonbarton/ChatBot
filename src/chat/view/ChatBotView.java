@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 /**
  *  this class provides popups for input and output
  * @author dbar0540
- * @version 1.0 10/21/15
+ * @version 1.1 10/21/15 completed
  */
 public class ChatBotView
 {
@@ -30,5 +30,29 @@ public class ChatBotView
 	public void displayResponse(String input)
 	{
 		JOptionPane.showMessageDialog(null, input);
+	}
+	
+	private void buildPoliticalTopicsList()
+	{
+		
+	}
+	
+	public boolean lengthChecker(String currentInput)
+	{
+		boolean haslength = false;
+		if(currentInput != null)
+		{
+			if(currentInput.length() > 0)
+			{
+				hasLength = true;
+			}
+		}
+		
+		if(currentInput != null && currentInput.length() > 0)
+		{
+			haslength = true;
+		}
+		
+		return hasLength;
 	}
 }
