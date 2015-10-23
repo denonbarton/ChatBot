@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  * @author dbar0540
  * @version 1.1 10/21/15 completed
  */
-public class ChatBotView
+public class ChatView
 {
 	/**
 	 * Provides a GUI popup for collecting user text with the supplied String
@@ -44,7 +44,7 @@ public class ChatBotView
 		{
 			if(currentInput.length() > 0)
 			{
-				hasLength = true;
+				haslength = true;
 			}
 		}
 		
@@ -53,6 +53,6 @@ public class ChatBotView
 			haslength = true;
 		}
 		
-		return hasLength;
+		return haslength;
 	}
 }
