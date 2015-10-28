@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
  * of the project.
  * @author Cody Henrichsen
- * @version 1.1 10/14/15 updated my lengthChecker method
+ * @version 1.3 10/14/15 updated my lengthChecker method
+ * repaired topic lists
  */
 public class Chatbot
 {
@@ -15,17 +16,40 @@ public class Chatbot
 	private String userName;
 	private String content;
 	
+	
+	
 	/**
 	 * Creates an instance of the Chatbot with the supplied username.
 	 * @param userName The username for the chatbot.
 	 */
 	public Chatbot(String userName)
 	{
+		this.memesList = new ArrayList<String>();
+		this.politicalTopicList = new ArrayList<String>();
 		this.userName = userName;
+		this.content = "CodeLizard";
+		
+		buildMemesList();
+		buildPoliticalTopicsList();
 	}
 	
 	private void buildMemesList()
 	{
+		this.memesList.add("cute animals");
+		this.memesList.add("doge");
+		this.memesList.add("anti joke chicken");
+		this.memesList.add("forever alone");
+		this.memesList.add("malicious mallard");
+		this.memesList.add("Stare dad");
+		this.memesList.add("godfather baby");
+		this.memesList.add("");
+		this.memesList.add("");
+		this.memesList.add("");
+		
+		/**
+		 * 
+		 */
+		
 		
 	}
 	
@@ -66,7 +90,14 @@ public class Chatbot
 	 */
 	public boolean contentChecker(String currentInput)
 	{
-		return false;
+		boolean hasContent = false;
+		
+		if(currentInput.toLowerCase().contains(content.toLowerCase()))
+		{
+			hasContent = true;
+		}
+		
+		return hasContent;
 	}
 	
 	/**
@@ -75,7 +106,7 @@ public class Chatbot
 	 * @param currentInput The supplied String to be checked.
 	 * @return Whether the String is contained in the ArrayList.
 	 */
-	public boolean politicalTopicChecker(String currentInput)
+	public String politicalTopicChecker(String currentInput)
 	{
 		return userName;
 	}
@@ -106,7 +137,7 @@ public class Chatbot
 	 */
 	public String getContent()
 	{
-		return null;
+		return getContent;
 	}
 	
 	/**
