@@ -119,25 +119,80 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
+		boolean hasMeme = false;
+		
+		for(String meme : memesList)
+		{
+			hasMeme = true;
+		}
+		
+		return hasMeme;
+	}
+	
+	public boolean quitChecker(String currentInput)
+	{
 		return false;
 	}
 	
-	/**
-	 * Returns the username of this Chatbot instance.
-	 * @return The username of the Chatbot.
-	 */
-	public Chatbot(String userName)
-	{
-		this.userName = userName;
-	}
+	public String processConversation(String currentInput)
 	
+	{
+		String nextConversation = "oh, what else would you ke to talk about?";
+		int randomTopic = (int) (Math.random() * 5); 
+		
+		switch (randomTopic)
+		{
+		case 0:
+			if(contentChecker(currentInput))
+			{
+				nextConversation = "hey you talked about my special topic, neat! what else do you like?";
+			}
+			break;
+		case 1:
+			if(memeChecker(currentInput))
+			{
+				nextConversation = "That is a popular meme this year! wow! what is your favorite food?";
+			}
+			break;
+		case 2:
+			if(politicalTopicChecker(currentInput) 
+			{
+				nextConversation = "comment and question";
+			}
+			break;
+		case 3:
+			if(currentInput.length() > 23)
+			{
+				nextConversation = "comment and question";
+			}
+			break;
+		case 4:
+			nextConversation = "comment and question";
+			break;
+		default:
+			nextConversation = "comment and question";
+			break;
+		
+		}
+		
+		
+		
+		
+		return nextConversation;
+		
+	}
+		
+	public String getUserName()
+	{
+		return userName;
+	}
 	/**
 	 * Returns the content area for this Chatbot instance.
 	 * @return The content area for this Chatbot instance.
 	 */
 	public String getContent()
 	{
-		return getContent;
+		return content;
 	}
 	
 	/**
