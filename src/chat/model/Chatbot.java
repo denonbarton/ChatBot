@@ -155,7 +155,7 @@ public class Chatbot
 			}
 			break;
 		case 2:
-			if(politicalTopicChecker(currentInput))
+			if(politicalTopicChecker(currentInput) 
 			{
 				nextConversation = "comment and question";
 			}

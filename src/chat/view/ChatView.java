@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 /**
  *  this class provides popups for input and output
  * @author dbar0540
- * @version 1.1 10/21/15 completed
+ * @version 1.2 11/5/15 added icon to the input window.
  */
 public class ChatView
 {
@@ -27,7 +27,7 @@ public class ChatView
 	{
 		String answer = "";
 		
-		answer = JOptionPane.showInputDialog(null, input);
+		answer = JOptionPane.showInputDialog(null, input, windowMessage, JOptionPane.INFORMATION_MESSAGE, chatIcon, null, "Type here please!").toString();
 		
 		return answer;
 	}
@@ -38,7 +38,7 @@ public class ChatView
 	
 	public void displayResponse(String input)
 	{
-		JOptionPane.showMessageDialog(null, input);
+		JOptionPane.showMessageDialog(null, input, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 	}
 	
 	private void buildPoliticalTopicsList()
