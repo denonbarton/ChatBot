@@ -1,6 +1,7 @@
 package chat.view;
 
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 /**
  *  this class provides popups for input and output
  * @author dbar0540
@@ -8,6 +9,14 @@ import javax.swing.JOptionPane;
  */
 public class ChatView
 {
+	private String windowMessage;
+	private ImageIcon chatIcon;
+	
+	public ChatView()
+	{
+		windowMessage = "This message brought to you by the chatbot! :D";
+		chatIcon = new ImageIcon(getClass().getResource("images/heart.png"));
+	}
 	/**
 	 * Provides a GUI popup for collecting user text with the supplied String
 	 * returns the user response as a String.
