@@ -8,9 +8,8 @@ import chat.view.ChatFrame;
  * Controller for the Chatbot project. Created a popup for the user name, and
  * displays the response.
  * 
- * @author snem8901
- * @version 1.3 10/23/15 Displays the Chatbot's userName variable. Made a while
- *          loop as well.
+ * @author Dbar0540
+ * @version 1.3 10/24/15 Displays the Chatbot's user
  */
 public class ChatController
 {
@@ -29,7 +28,7 @@ public class ChatController
 	public void start()
 	{
 		myChatView.displayResponse("Hi there " + myBot.getUserName());
-		// chat();
+		chat();
 	}
 
 	private void chat()
@@ -60,7 +59,7 @@ public class ChatController
 
 	private void shutDown()
 	{
-		myChatView.displayResponse("Goodbye, " + myBot.getUserName() + "see you later");
+		myChatView.displayResponse("Goodbye, " + myBot.getUserName() + "hope to see you later");
 		System.exit(0);
 	}
 

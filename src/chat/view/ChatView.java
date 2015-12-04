@@ -14,7 +14,7 @@ public class ChatView
 	
 	public ChatView()
 	{
-		windowMessage = "This message brought to you by the chatbot! :D";
+		windowMessage = "CHAT BOT IS LONELY, TALK TO IT!!!!! :D";
 		chatIcon = new ImageIcon(getClass().getResource("images/heart.png"));
 	}
 	/**

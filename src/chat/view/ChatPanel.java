@@ -43,7 +43,7 @@ public class ChatPanel extends JPanel
         this.add(chatButton);
         this.add(chatTextField);
         this.add(submitButton);
-        chatTextField.setToolTipText("Type here for the chatbot");
+        chatTextField.setToolTipText("Chat Bot is listening");
         chatTextArea.setEnabled(false);
         
     
@@ -80,7 +80,7 @@ public class ChatPanel extends JPanel
                 int blue = (int) (Math.random() * 256);
                 int green = (int) (Math.random() * 256);
                 setBackground(new Color(red, blue, green));
-                chatTextField.setText("Press");
+                chatTextField.setText("Press yo fool");
             }
         });
         
@@ -93,7 +93,6 @@ public class ChatPanel extends JPanel
                 chatTextArea.append("\nUser: " + userText);    //displays user text
                 chatTextArea.append("\nChatbot: " + response); //displays answer
                 chatTextField.setText("");    //clears the user field
-                
             }
         });    
     }

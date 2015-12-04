@@ -6,20 +6,20 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import chat.model.Chatbot;
+import chat.model.ChatBot;
 
 
 
 public class ChatbotTest
 {
-	private Chatbot sampleBot;
+	private ChatBot sampleBot;
 	private String userName;
 
 	@Before
 	public void setUp() throws Exception
 	{
 		userName = "test";
-		sampleBot = new Chatbot(userName);
+		sampleBot = new ChatBot(userName);
 	}
 
 	@After
@@ -49,8 +49,8 @@ public class ChatbotTest
 	public void testContentChecker()
 	{
 		String content = "some words";
-		myBot.setContent(content);
-		assertFalse("Check blank failed", MyBot.contentChecker(" "));
+		sampleBot.setContent(content);
+		assertFalse("Check blank failed", sampleBot.contentChecker(" "));
 		assertFalse("Check partial failed", sampleBot.contentChecker("words"));
 		assertFalse("Check partial failed", sampleBot.contentChecker("some"));
 		assertTrue("Check match failed", sampleBot.contentChecker(content));
@@ -61,7 +61,7 @@ public class ChatbotTest
 	@Test
 	public void testKeyboardMashChecker()
 	{
-		assertFalse("Mash incorrectly detected", Bot.keyboardMashChecker("S.D.F."));
+		assertFalse("Mash incorrectly detected", sampleBot.keyboardMashChecker("S.D.F."));
 		assertFalse("Mash incorrectly detected", sampleBot.keyboardMashChecker("derf"));
 		assertTrue("Mash not detected", sampleBot.keyboardMashChecker("sdf"));
 		assertTrue("Mash not detected", sampleBot.keyboardMashChecker("dfg"));

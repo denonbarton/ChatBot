@@ -3,7 +3,7 @@ package chat.controller;
 /**
  * Starts the ChatBot program
  * @author dbar0540
- * @version 1.0 10/21/15
+ * @version 1.0 10/22/15
  */
 
 public class ChatRunner

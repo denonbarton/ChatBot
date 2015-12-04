@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
  * of the project.
- * @author Sydney Nemelka
+ * @author Denon Barton
  * @version 1.4 11/3/15 made a switch case. 
  */
 public class ChatBot
@@ -25,7 +25,7 @@ public class ChatBot
         this.memesList = new ArrayList<String>();
         this.politicalTopicList = new ArrayList<String>(); 
         this.userName = userName;
-        this.content = "suga";
+        this.content = "sugar";
         
         buildMemesList();
         buildPoliticalTopicsList();        
@@ -61,7 +61,7 @@ public class ChatBot
         this.politicalTopicList.add("Clinton");
         this.politicalTopicList.add("democrat");
         this.politicalTopicList.add("Carson");
-        this.politicalTopicList.add("Rubio");
+        this.politicalTopicList.add("burn");
         this.politicalTopicList.add("Fiorina");
         this.politicalTopicList.add("Sanders");
         this.politicalTopicList.add("vote");
@@ -188,7 +188,8 @@ public class ChatBot
             keyboardMash = "Mash not detected.";
             break;
         default:
-            keyboardMash = "meow meow.";
+            keyboardMash = ""
+            		+ " oh no... ";
             break;
             
         }
@@ -204,7 +205,7 @@ public class ChatBot
     }
     public String processQuestion(String currentInput)
     {
-        String talkBack = "?";
+        String talkBack = "you make no sense";
         int randomTopic = (int) (Math.random() * 5); //Generates a random number between 1 and 4.
         
         if(keyboardMashChecker(currentInput))
@@ -217,7 +218,7 @@ public class ChatBot
         case 0:
             if(contentChecker(currentInput))
             {
-                talkBack = "Hey saaaame. What else?";
+                talkBack = " ?";
             }
             break;
         case 1:
