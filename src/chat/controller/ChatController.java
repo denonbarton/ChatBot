@@ -24,7 +24,7 @@ public class ChatController
 		myBot = new ChatBot(user);
 		chatFrame = new ChatFrame(this);
 	}
-
+	
 	public void start()
 	{
 		myChatView.displayResponse("Hi there " + myBot.getUserName());
