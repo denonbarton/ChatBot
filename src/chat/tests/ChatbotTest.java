@@ -5,21 +5,20 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import chat.model.ChatBot;
+import chat.model.Chatbot;
 
 
 
 public class ChatbotTest
 {
-	private ChatBot sampleBot;
+	private Chatbot sampleBot;
 	private String userName;
 
 	@Before
 	public void setUp() throws Exception
 	{
 		userName = "test";
-		sampleBot = new ChatBot(userName);
+		sampleBot = new Chatbot(userName);
 	}
 
 	@After

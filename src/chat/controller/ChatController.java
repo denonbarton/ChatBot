@@ -1,8 +1,15 @@
 package chat.controller;
 
-import chat.model.ChatBot;
-import chat.view.ChatView;
+import  java.util.ArrayList;
+
+import chat.model.CTECTwitter;
+import chat.model.Chatbot;
 import chat.view.ChatFrame;
+import chat.view.ChatPanel;
+import chat.view.ChatView;
+
+
+
 
 /**
  * Controller for the Chatbot project. Created a popup for the user name, and
@@ -11,56 +18,73 @@ import chat.view.ChatFrame;
  * @author Dbar0540
  * @version 1.3 10/24/15 Displays the Chatbot's user
  */
+
 public class ChatController
 {
-	private ChatBot myBot;
-	private ChatView myChatView;
-	private ChatFrame chatFrame;
+	private Chatbot chatBotDenon;
+	private ChatView display;
+	private ChatFrame baseFrame;
+	private CTECTwitter myTwitter;
+	private ChatController baseController;
+	
 
+	public void handleErrors(String errorMessage)
+	{
+		display.displayText(errorMessage);
+	}
+	
 	public ChatController()
 	{
-		myChatView = new ChatView();
-		String user = myChatView.getUserInput("What is your name?");
-		myBot = new ChatBot(user);
-		chatFrame = new ChatFrame(this);
+		display = new ChatView();
+		String user = display.getUserInput("What is your name");
+		chatBotDenon = new Chatbot(user);
+		baseFrame = new ChatFrame(this);
 	}
 	
 	public void start()
 	{
-		myChatView.displayResponse("Hi there " + myBot.getUserName());
+		display.displayResponse("Hi there " + chatBotDenon.getUserName());
 		chat();
 	}
 
 	private void chat()
 	{
-		String textFromUser = myChatView.getUserInput("Talk to the chatbot.");
-		while (myBot.lengthChecker(textFromUser))
+		String textFromUser = display.getUserInput("Talk to the chatbot.");
+		while (chatBotDenon.lengthChecker(textFromUser))
 		{
 
-			textFromUser = myBot.processQuestion(textFromUser);
-			textFromUser = myChatView.getUserInput(textFromUser);
+			textFromUser = chatBotDenon.processQuestion(textFromUser);
+			textFromUser = display.getUserInput(textFromUser);
 		}
 
 	}
 
-	public String fromUserToChatbot(String textFromUser)
+	public String analyze(String userName)
+	{
+		String userAnalysis = "The Twiter user " + username + "has...";
+	return userAnalysis;	
+	}
+	
+	private void shutDown()
+	{
+		display.displayResponse("Goodbye, " + chatBotDenon.getUserName() + "hope to see you later");
+		System.exit(0);
+	}
+	
+    public String fromUserToChatbot(String textFromUser)
 	{
 		String botResponse = "";
 
-		if (myBot.quitChecker(textFromUser))
+		if (chatBotDenon.quitChecker(textFromUser))
 		{
 			shutDown();
 		}
 
-		botResponse = myBot.processQuestion(textFromUser);
+		botResponse = chatBotDenon.processQuestion(textFromUser);
 
 		return botResponse;
 	}
 
-	private void shutDown()
-	{
-		myChatView.displayResponse("Goodbye, " + myBot.getUserName() + "hope to see you later");
-		System.exit(0);
-	}
+
 
 }
