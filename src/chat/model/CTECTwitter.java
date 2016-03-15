@@ -1,6 +1,9 @@
 package chat.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
+
 import twitter4j.*;
 import chat.controller.ChatController;
 
@@ -33,7 +36,31 @@ public class CTECTwitter
 
 	public void topResults(List<String> wordList)
 	{
+		String tweetResults = "";
 		
+		int topWordLocation = 0;
+		int topCount = 0;
+		
+		for (int index = 0; index < wordsList.size(); index++)
+		{
+			int wordUseCount = 1;
+			
+			for(int spot = index + 1; spot < wordsList.size(); spot++)
+			{
+				if(wordsList.get(index).equals(wordsList.get(spot)))
+				{
+					wordUseCount++;
+				}
+				if(wordUseCount > topCount)
+				{
+					topCount = wordUseCount;
+					topWordLocation = index;
+				}
+			}
+		}
+		tweetResults = "The to word in the tweets was " + wordsList.get(topWordLocation) + " and it was used " + topCount + "times! ";
+		
+		return tweetResults;
 	}
 	
 	public void loadTweet(String message)
@@ -51,9 +78,9 @@ public class CTECTwitter
 			String[] tweetText = currentStatus.getText().split("");
 			for (String word : tweetText)
 			{
-				tweetTexts.add(removePunctuation(word).toLowerCase());
+				wordsList.add(removePunctuation(word).toLowerCase());
 			}
-			removeCommonEnglishWords(tweetTexts);
+			removeCommonEnglishWords(wordsList);
 			removeEmptyText();
 		}
 	}
@@ -70,19 +97,68 @@ public class CTECTwitter
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	private List removeCommonEnglishWords(List<String> wordList)
 	{
+		String[] boringWords = importWordsToArray();
+	
+		for (int count = 0; count <wordList.size(); count++)
+		{
+			for (int removeSpot = 0; removeSpot < boringWords.length;removeSpot++)
+			{
+				if (wordsList.get(count).equalsIgnoreCase(boringWords[removeSpot]))
+				{
+					wordList.get(count);
+					count--;
+					removeSpot = boringWords.length; // Exit the inner loop.
+				}
+			}
+		}
+		removeTwitterUsernamesFromList(wordList);
+		
 		return wordList;
 	}
 	
 	private String[] importWordsToArray()
 	{
-		return null;
+		String[] boringWords;
+		int wordCount = 0;
+		try
+		{
+			Scanner wordFile = new Scanner(new File("commonWords.txt"));
+			while (wordFile.hasNext())
+			{
+				wordCount++;
+				wordFile.next();
+			}
+			wordFile.reset();
+			boringWords = new String[wordCount];
+			int boringWordCount = 0;
+			while (wordFile.hasNext())
+			{
+				boringWords[boringWordCount] = wordFile.next();
+				boringWordCount++;
+			}
+			wordFile.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			baseController.handleErrors(e.getMessage());
+			return new String[0];
+		}
+		return boringWords;
 	}
 
 	private void removeTwitterUsernamesFromList(List<String>wordList)
 	{
-		
+		for (int wordCount = 0; wordCount < wordList.size(); wordCount++)
+		{
+			if (wordList.get(wordCount).length() >= 1 && wordList.get(wordCount).charAt(0) == '@')
+			{
+			wordList.remove(wordCount);
+			wordCount--;
+			}
+		}
 	}
 	
 	private String removePunctuation(String currentString)
