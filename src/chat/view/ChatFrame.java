@@ -16,6 +16,8 @@ import javax.swing.JButton;
 
 public class ChatFrame extends JFrame
 {
+
+
 	private ChatController baseController;
 	private ChatPanel basePanel;
 	private JTextField textField;
@@ -54,4 +56,10 @@ public class ChatFrame extends JFrame
 		this.setVisible(true); // must be the last line of code in the
 								// setupFrame method
 	}
+	
+	public ChatController getBaseController()
+	{
+		return baseController;
+	}
 }
+

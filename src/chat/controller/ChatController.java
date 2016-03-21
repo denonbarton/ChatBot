@@ -2,6 +2,7 @@ package chat.controller;
 
 import  java.util.ArrayList;
 
+import twitter4j.TwitterException;
 import chat.model.CTECTwitter;
 import chat.model.Chatbot;
 import chat.view.ChatFrame;
@@ -30,7 +31,7 @@ public class ChatController
 
 	public void handleErrors(String errorMessage)
 	{
-		display.displayText(errorMessage);
+		display.displayResponse(errorMessage);
 	}
 	
 	public ChatController()
@@ -38,7 +39,7 @@ public class ChatController
 		display = new ChatView();
 		String user = display.getUserInput("What is your name");
 		chatBotDenon = new Chatbot(user);
-		baseFrame = new ChatFrame(this);
+		setBaseFrame(new ChatFrame(this));
 	}
 	
 	public void start()
@@ -61,17 +62,30 @@ public class ChatController
 
 	public String analyze(String userName)
 	{
-		String userAnalysis = "The Twiter user " + username + "has...";
-	return userAnalysis;	
+		String userAnalysis = "The Twiter user " + userName + "has...";
+		try
+		{
+			myTwitter.loadTweet(userName);
+		}
+		catch (TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		return userAnalysis;	
 	}
-	
+		
 	private void shutDown()
 	{
 		display.displayResponse("Goodbye, " + chatBotDenon.getUserName() + "hope to see you later");
 		System.exit(0);
 	}
 	
-    public String fromUserToChatbot(String textFromUser)
+	private void sendTweet(String tweetText)
+	{
+		myTwitter.sendTweet(tweetText);
+	}
+	
+	public String fromUserToChatbot(String textFromUser)
 	{
 		String botResponse = "";
 
@@ -85,6 +99,33 @@ public class ChatController
 		return botResponse;
 	}
 
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
 
+	public void setBaseFrame(ChatFrame baseFrame)
+	{
+		this.baseFrame = baseFrame;
+	}
 
+	public ChatController getBaseController()
+	{
+		return baseController;
+	}
+
+	public void setBaseController(ChatController baseController)
+	{
+		this.baseController = baseController;
+	}
+
+public Chatbot getChatbot()
+{
+	return chatBotDenon;
+}
+
+public ChatView getChatView()
+{
+	return display;
+}
 }
