@@ -50,7 +50,7 @@ public class CTECTwitter
 	{
 		try
 		{
-			chatBotTwitter.updateStatus("I Just tweeted from my java chatbot program");
+			chatBotTwitter.updateStatus("Denon Just tweeted from my java chatbot program @CTECNOW @CODYHENRICHSEN");
 		}
 		catch (TwitterException error)
 		{

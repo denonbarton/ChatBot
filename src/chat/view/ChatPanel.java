@@ -18,6 +18,7 @@ public class ChatPanel extends JPanel
 	private JTextArea chatTextArea;
 	private JScrollPane chatPane;
 	private JButton analyzeTwitterButton;
+	private JButton tweetButton;
 
 	public ChatPanel(ChatController baseController)
 	{
@@ -26,10 +27,12 @@ public class ChatPanel extends JPanel
 		submitButton = new JButton("");
 		chatButton = new JButton("Press this!!");
 		chatTextField = new JTextField(30);
-		chatLayout.putConstraint(SpringLayout.WEST, chatTextField, -20, SpringLayout.WEST, this);
-		chatLayout.putConstraint(SpringLayout.EAST, chatTextField, 360, SpringLayout.WEST, this);
+		
 		chatTextArea = new JTextArea(10, 30);
 		analyzeTwitterButton = new JButton("analyze");
+		
+		tweetButton = new JButton ("tweet");
+		
 
 		setupChatPane();
 		setupPanel();
@@ -59,15 +62,9 @@ public class ChatPanel extends JPanel
 		this.add(chatTextField);
 		this.add(submitButton);
 		this.add(analyzeTwitterButton);
+		this.add(tweetButton);
 
 		chatTextField.setToolTipText("Chat Bot is listening");
-
-		TextArea textArea = new TextArea();
-		chatLayout.putConstraint(SpringLayout.NORTH, textArea, 30, SpringLayout.NORTH, this);
-		chatLayout.putConstraint(SpringLayout.WEST, textArea, 100, SpringLayout.WEST, this);
-		chatLayout.putConstraint(SpringLayout.SOUTH, textArea, 250, SpringLayout.NORTH, this);
-		chatLayout.putConstraint(SpringLayout.EAST, textArea, -20, SpringLayout.EAST, this);
-		add(textArea);
 		chatTextArea.setEnabled(false);
 
 	}
@@ -83,6 +80,13 @@ public class ChatPanel extends JPanel
 		chatLayout.putConstraint(SpringLayout.SOUTH, chatTextArea, -113, SpringLayout.SOUTH, this);
 		chatLayout.putConstraint(SpringLayout.EAST, chatTextArea, -21, SpringLayout.EAST, this);
 		chatLayout.putConstraint(SpringLayout.EAST, submitButton, 0, SpringLayout.EAST, chatTextArea);
+		chatLayout.putConstraint(SpringLayout.NORTH, analyzeTwitterButton, 220, SpringLayout.NORTH, this);
+		chatLayout.putConstraint(SpringLayout.EAST, analyzeTwitterButton, -44, SpringLayout.WEST, submitButton);
+		chatLayout.putConstraint(SpringLayout.WEST, chatTextField, -20, SpringLayout.WEST, this);
+		chatLayout.putConstraint(SpringLayout.EAST, chatTextField, 360, SpringLayout.WEST, this);
+		chatLayout.putConstraint(SpringLayout.NORTH, tweetButton, 0, SpringLayout.NORTH, chatButton);
+		chatLayout.putConstraint(SpringLayout.EAST, tweetButton, -44, SpringLayout.WEST, submitButton);
+		
 
 	}
 
@@ -93,6 +97,14 @@ public class ChatPanel extends JPanel
 
 	private void setupListeners()
 	{
+		tweetButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				baseController.sendTweet("");
+			}
+		});
+		
 		chatButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent click)

@@ -34,18 +34,24 @@ public class ChatController
 		display.displayResponse(errorMessage);
 	}
 	
+	public void sendTweet(String message)
+	{
+	myTwitter.sendTweet(message);	
+	}
+	
 	public ChatController()
 	{
 		display = new ChatView();
 		String user = display.getUserInput("What is your name");
 		chatBotDenon = new Chatbot(user);
+		myTwitter = new CTECTwitter(this);
 		setBaseFrame(new ChatFrame(this));
 	}
 	
 	public void start()
 	{
 		display.displayResponse("Hi there " + chatBotDenon.getUserName());
-		chat();
+		//chat();
 	}
 
 	private void chat()
@@ -79,12 +85,7 @@ public class ChatController
 		display.displayResponse("Goodbye, " + chatBotDenon.getUserName() + "hope to see you later");
 		System.exit(0);
 	}
-	
-	private void sendTweet(String tweetText)
-	{
-		myTwitter.sendTweet(tweetText);
-	}
-	
+		
 	public String fromUserToChatbot(String textFromUser)
 	{
 		String botResponse = "";
